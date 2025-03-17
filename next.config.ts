@@ -7,10 +7,15 @@ import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
 // https://github.com/cloudflare/next-on-pages/blob/main/internal-packages/next-dev/README.md
 setupDevPlatform().catch(console.error);
 
+import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+})
+
+export default withMDX(nextConfig);
