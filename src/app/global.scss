@@ -1,7 +1,5 @@
-@use "@picocss/pico/scss/pico" with (
-  $theme-color: "slate",
-  $modules: (
-    "content/code": false,
+@use "@picocss/pico/scss/pico" with ($theme-color: "slate",
+  $modules: ("content/code": true,
     "forms/input-color": false,
     "forms/input-date": false,
     "forms/input-file": false,
@@ -16,6 +14,4 @@
     "components/progress": false,
     "components/tooltip": false,
     "utilities/accessibility": false,
-    "utilities/reduce-motion": false
-  )
-);
+    "utilities/reduce-motion": false));

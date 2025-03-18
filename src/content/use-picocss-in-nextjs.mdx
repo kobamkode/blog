@@ -4,3 +4,66 @@ slug: "use-picocss-in-nextjs"
 ---
 
 # {fm.title}
+
+As we know that NextJs has a seamless integration with Tailwind when we create a new app with `npx create-next-app@latest`, it will ask us to include Tailwind CSS or not in our NextJs project. How if we want to use another CSS framework like Pico instead of Tailwind?.
+
+I prefer to use Pico when I build this NextJs static site, because I want to make this static site minimalist, and keep my JSX looks clear and simple. 
+
+Pico use semantic HTML tags, so we don't need to write multiple classes to style the page, also they have components that use semantic HTML tags too! please check [their page](https://picocss.com/) for more awesome features!
+
+Back to how if we want to use Pico instead of Tailwind in our NextJs app?
+
+1. Generate new app with `npx create-next-app@latest` as usual, but say '__No__' when it asking you to include Tailwind.
+2. Install Sass support for NextJs `npm install --save-dev sass`
+3. Install Pico with NPM `npm install @picocss/pico`
+4. Create a `global.scss` file in `app/` directory
+```scss
+// app/global.scss
+
+// because we use NextJs, import Pico with
+// @use "@picocss/pico/scss/pico" instead of @use "pico".
+// https://picocss.com/docs/sass#import
+@use "@picocss/pico/scss/pico"
+````
+5. Import your `global.css` to your `app/layout.tsx`.
+```tsx
+// app/layout.tsx
+
+import type { Metadata } from "next";
+import "./global.scss";
+```
+
+6. Voila! restart your server, and Pico should already be applied.
+
+If you want to customize the default styles, you can write it into `global.scss`. Here's my `global.scss` to add theme and turn-off unused Pico modules.
+
+```scss
+// app/global.scss
+
+@use "@picocss/pico/scss/pico" with (
+$theme-color: "slate",
+$modules: (
+	"content/code": true,
+	"forms/input-color": false,
+	"forms/input-date": false,
+	"forms/input-file": false,
+	"forms/input-range": false,
+	"forms/input-search": false,
+	"components/accordion": false,
+	"components/card": false,
+	"components/dropdown": false,
+	"components/loading": false,
+	"components/modal": false,
+	"components/nav": true,
+	"components/progress": false,
+	"components/tooltip": false,
+	"utilities/accessibility": false,
+	"utilities/reduce-motion": false
+	)
+);
+```
+
+### Conclusion
+
+Tailwind is good! I prefer to use Tailwind if I need to make a things that needs granular adjustments without writing vanilla CSS, but for this static site, I'm happy to make it minimalist with the default Pico Css style. I wish someone could combine Pico + Tailwind so we could get the benefits of those two.
+
