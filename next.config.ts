@@ -11,11 +11,20 @@ import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+        pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 };
 
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
+        options: {
+                remarkPlugins: [
+                        //@ts-expect-error type error
+                        ['remark-gfm', {}],
+                        //@ts-expect-error type error
+                        ['remark-frontmatter', { type: 'yaml', marker: '-' }],
+                        //@ts-expect-error type error
+                        ['remark-mdx-frontmatter', { name: 'fm' }]
+                ],
+        }
 })
 
 export default withMDX(nextConfig);
