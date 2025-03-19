@@ -24,6 +24,13 @@ const withMDX = createMDX({
                         //@ts-expect-error type error
                         ['remark-mdx-frontmatter', { name: 'fm' }]
                 ],
+                rehypePlugins: [
+                        //@ts-expect-error type error
+                        ['rehype-highlight', {}],
+                        //@ts-expect-error type error
+                        ['rehype-highlight-code-lines', {}]
+
+                ],
         }
 })
 

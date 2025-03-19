@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./global.scss";
+import 'highlight.js/styles/github-dark-dimmed.css';
 import Header from "@/components/Header";
 import Link from "next/link";
 
@@ -21,7 +22,7 @@ export default function RootLayout({
                                         {children}
                                 </main>
                                 <footer className="container">
-                                        <small>2025 <Link href="/">kobamkode</Link>.</small>
+                                        <small>© 2025 <Link href="/">kobamkode</Link>.</small>
                                 </footer>
                         </body>
                 </html>
